@@ -8,10 +8,12 @@ const app = express();
 
 // Routes
 const videoRoutes = require('./routes/movies')
+const authRoutes = require('./routes/authentication')
 
-// Cors Middleware
+
+// Middleware
 app.use(cors());
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
@@ -30,7 +32,7 @@ var api = express.Router();
 var auth = express.Router();
 
 app.use('/api', videoRoutes);
-
+app.use('/auth', authRoutes);
 /*
 auth.get('/login', (req,res) =>{
     res.json(this.messages);
